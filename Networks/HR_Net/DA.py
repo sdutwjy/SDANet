@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-# import models.common as common
 
 import torchvision.ops.deform_conv as dc
 
@@ -69,7 +68,7 @@ class RCAB(nn.Module):
 
         return out
 
-class deform_conv(nn.Module): # Deformed Convolution Attention Block
+class deform_conv(nn.Module): 
     def __init__(self, features):
         super(deform_conv, self).__init__()
         groups = 8
@@ -87,7 +86,7 @@ class deform_conv(nn.Module): # Deformed Convolution Attention Block
 
         return out
 
-class DAB(nn.Module): # Deformed Convolution Attention Block
+class DA(nn.Module): 
     def __init__(self, features):
         super(DAB, self).__init__()
         groups = 8
@@ -102,11 +101,11 @@ class DAB(nn.Module): # Deformed Convolution Attention Block
 
     def forward(self, x):
         residual = x
-        # deform conv
+       
         offset1 = self.prelu(self.offset_conv1(x))
         feat_deconv1 = self.deconv1(x, offset1)
 
-        # attention
+        
         atten_conv = self.conv(x)
         atten_feat = self.softmax(atten_conv)
 
@@ -115,19 +114,3 @@ class DAB(nn.Module): # Deformed Convolution Attention Block
 
         return out
 
-
-class DCCAB(nn.Module): # Deformed Convolution Attention Block
-    def __init__(self, features):
-        super(DCCAB, self).__init__()
-        self.dab = DAB(features)
-        self.cab = RCAB(features)
-
-    def forward(self, x):
-        residual = x
-        # deform conv
-        dabdata = self.dab(x)
-        cabdata = self.cab(dabdata)
-
-        out = cabdata + residual
-
-        return out

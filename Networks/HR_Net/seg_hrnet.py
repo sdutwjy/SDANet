@@ -18,8 +18,8 @@ import torch
 import torch.nn as nn
 import torch._utils
 import torch.nn.functional as F
-from .DA import DAB
-from .CA import CoordAtt
+from .DA import DA
+from .SA import scale
 
 
 BatchNorm2d = nn.BatchNorm2d
@@ -333,9 +333,9 @@ class HighResolutionNet(nn.Module):
         # self.lska = Block(256,7)
         # self.gam = GAM(256,256)
         # self.ema = EMA(256)
-        self.coord = CoordAtt(256,256)
-        self.dense1 = DAB(256)
-        self.dense2 = DAB(256)
+        self.sa = scale(256,256)
+        self.da1 = DA(256)
+        self.da2 = DA(256)
         # self.dense3 = DAB(256)
         self.last_layer = nn.Sequential(
             nn.ConvTranspose2d(256,64,4,stride=2, padding=1, output_padding=0, bias=True),
@@ -483,14 +483,9 @@ class HighResolutionNet(nn.Module):
 
         f = torch.cat([x[0], x1, x2, x3], 1)
         x = self.last(f)
-        # x = self.lska(x)
-        # x = self.gam(x)
-        # x = self.ema(x)
-        x = self.coord(x)
-        x = self.dense1(x)
-        x = self.dense2(x)
-        # x = self.dense3(x)
-        # x2 = x + x1
+        x = self.sa(x)
+        x = self.da1(x)
+        x = self.da2(x)
 
         x = self.last_layer(x)
 
