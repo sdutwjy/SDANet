@@ -16,7 +16,7 @@ This repository contains the code and resources associated with our paper titled
 
 ## Introduction
 Crowd counting aims to derive information about crowd density by quantifying the number of individuals in an image or video. 
-It offers crucial insights applicable to various domains, \emph{e.g.,}  secure,  efficient decision-making and management.
+It offers crucial insights applicable to various domains, e.g.,  secure,  efficient decision-making and management.
 However, scale variation and irregular shapes of heads pose intricate challenges. 
 To address these challenges, we propose a Scale-Deformation Awareness Network (SDANet). 
 Specifically, a Scale Awareness (SA) module is introduced to address the scale variation. 
