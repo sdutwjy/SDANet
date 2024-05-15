@@ -35,7 +35,6 @@ class swish(nn.Module):
         return x * torch.sigmoid(x)
     
 class CoordAtt(nn.Module):
-    # def __init__(self, inp, oup, groups=32):
     def __init__(self, inp, oup, groups=32):
         super(CoordAtt, self).__init__()
         self.pool_h = nn.AdaptiveAvgPool2d((None, 1))
