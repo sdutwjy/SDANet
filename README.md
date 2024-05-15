@@ -24,7 +24,7 @@ It can capture long-distance dependencies and preserve precise spatial informati
 Concurrently, a Deformation Awareness (DA) module is introduced to solve the challenge of head deformation.
 It adjusts the sampling position of the convolution kernel through deformable convolution and learning offset.
 
-![arch](./image/framework.jpg)
+![arch](./image/framework.png)
 
 ## Environment
 
@@ -71,11 +71,11 @@ python npydata.py
 
 ### Visual Results
 
-![arch](./image/result.jpg)
+![arch](./image/result.png)
 
 ### Quantitative Results
 
-![arch](./image/table 1.png)
+![arch](./image/table_1.png)
 
 ## Citation
 
