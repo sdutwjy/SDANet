@@ -524,7 +524,7 @@ def get_seg_model(train=False):
     from Networks.HR_Net.default import _C as hr_config
     from Networks.HR_Net.default import update_config
 
-    update_config(hr_config, './Networks/HR_Net/seg_hrnet_w48.yaml')
+    update_config(hr_config, './net/seg_hrnet_w48.yaml')
     model = HighResolutionNet(hr_config)
     from Networks.HR_Net.config import cfg
 

@@ -1,7 +1,7 @@
 from __future__ import division
 import warnings
 
-from Networks.HR_Net.seg_hrnet import get_seg_model
+from net.seg_hrnet import get_seg_model
 
 import torch.nn as nn
 import torch.nn.functional as F
@@ -237,7 +237,7 @@ def generate_point_map(kpoint, f_loc, rate=1):
 def generate_bounding_boxes(kpoint, fname):
     '''change the data path'''
     Img_data = cv2.imread(
-        '/home/dkliang/projects/synchronous/dataset/ShanghaiTech/part_A_final/test_data/images/' + fname[0])
+        '/scratch/jianyong/ShanghaiTech/part_A_final/test_data/images/' + fname[0])
     ori_Img_data = Img_data.copy()
 
     '''generate sigma'''
